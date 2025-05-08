@@ -50,15 +50,15 @@ public class AreaCorporalAcometida {
     private Integer pernaEsquerda;
 
     @Min(0)
-    @Max(100) 
+    @Max(18) 
     private Integer troncoAnterior;
 
     @Min(0)
-    @Max(100)
+    @Max(18)
     private Integer troncoPosterior;
 
     @Min(0)
-    @Max(100)
+    @Max(1)
     private Integer genitalia;
 
     @OneToOne(mappedBy = "areaCorporalAcometida")
