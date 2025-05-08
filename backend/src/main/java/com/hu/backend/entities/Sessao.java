@@ -26,7 +26,7 @@ public class Sessao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sessaoId;
+    private Long id;
 
     private LocalDate dataSessao;
 
