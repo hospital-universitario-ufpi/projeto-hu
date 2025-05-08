@@ -1,5 +1,6 @@
 package com.hu.backend.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.hu.backend.entities.enums.ExameTipo;
@@ -35,8 +36,16 @@ public class Exames {
     @Column(name = "nome_exame")
     private String nomeExame;
 
+    private BigDecimal resultadoNumerico;
+
+    private boolean resultadoBoolean;
+
+    private String resultadoOutro;
+
     @Column(name = "exame_tipo")
     private LocalDate dataExame;
+
+    private String laboratorio;
 
     private String observacao;
 }

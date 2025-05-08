@@ -62,6 +62,6 @@ public class AreaCorporalAcometida {
     private Integer genitalia;
 
     @OneToOne(mappedBy = "areaCorporalAcometida")
-    private Paciente paciente;
+    private Tratamento tratamento;
 
 }

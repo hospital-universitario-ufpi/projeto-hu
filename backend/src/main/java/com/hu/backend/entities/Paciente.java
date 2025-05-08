@@ -37,7 +37,7 @@ public class Paciente {
     private Long id;
 
 
-    private String prontuario;
+    private String prontuario; // vem da ficha do ghu;
 
     @Enumerated(EnumType.STRING)
     private PacienteSexo sexo;
@@ -49,13 +49,14 @@ public class Paciente {
 
     private String medicoIndicacao;
 
-    private String telefone;
+    @Column(name = "telefone_medicacao_uso")
+    private String telefoneMedicoIndicacao;
+
+    @Column(name = "telefone_paciente")
+    private String telefonePaciente;
 
     @Enumerated(EnumType.STRING)
     private Fototipo fototipo;
-
-    private String medicacoesEmUso;
-    
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "area_corporal_acometida")

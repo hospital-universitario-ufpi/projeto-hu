@@ -3,6 +3,7 @@ package com.hu.backend.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,25 +37,33 @@ public class Tratamento {
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @Column(name = "fototerapia_anterior_descricao")
-    private String fototerapiaAnteriorDescricao;
+    @Column(name = "nome_tratamento")
+    private String nomeTratamento;
 
-    @Column(name = "sessoes_fototerapia_anterior")
-    private Integer sessoesFototerapiaAnterior;
+    @Column(name = "data_inicio")
+    private LocalDate dataInicio;
 
-    // private String modalidadeFototerapiaAnterior;
+    @Column(name = "data_fim")
+    private LocalDate dataFim;
 
-    @Column(name = "dose_acumulada_fototerapia_anterior")
-    private BigDecimal doseAcumuladaFototerapiaAnterior; // J/cm²
+    @Column(name = "quantidade_sessoes")
+    private Integer quantidadeSessoes;
 
-    @Column(name = "tratamento_anterior_descricao")
-    private String tratamentoAnteriorDescricao;
+    private BigDecimal doseAcumulada;
 
-    @Column(name = "tratamento_anterior_data")
-    private LocalDate tratamentoAnteriorData;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "area_corporal_acometida")
+    private AreaCorporalAcometida areaCorporalAcometida;
 
     
 
     
 
 }
+/*
+ * 
+ * {
+ *      id: 654654654654654,
+ *      nome
+ * }
+ */
