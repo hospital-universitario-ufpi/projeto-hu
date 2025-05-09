@@ -13,7 +13,8 @@ public record PacienteCreationDto(
     String medicoIndicacao,
     String telefoneMedicoIndicacao,
     String telefonePaciente,
-    Fototipo fototipo
+    Fototipo fototipo,
+    String nome
 ) {
     
 }

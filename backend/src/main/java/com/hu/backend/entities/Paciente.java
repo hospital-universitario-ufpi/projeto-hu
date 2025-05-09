@@ -35,6 +35,7 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
 
     private String prontuario; // vem da ficha do ghu;
 
