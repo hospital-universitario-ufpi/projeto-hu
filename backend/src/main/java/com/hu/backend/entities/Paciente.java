@@ -1,6 +1,7 @@
 package com.hu.backend.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.hu.backend.entities.enums.Fototipo;
 import com.hu.backend.entities.enums.PacienteSexo;
@@ -10,12 +11,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,8 +35,9 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
 
-    private String prontuario;
+    private String prontuario; // vem da ficha do ghu;
 
     @Enumerated(EnumType.STRING)
     private PacienteSexo sexo;
@@ -49,14 +49,18 @@ public class Paciente {
 
     private String medicoIndicacao;
 
-    private String telefone;
+    @Column(name = "telefone_medicacao_uso")
+    private String telefoneMedicoIndicacao;
+
+    @Column(name = "telefone_paciente")
+    private String telefonePaciente;
 
     @Enumerated(EnumType.STRING)
     private Fototipo fototipo;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "area_corporal_acometida")
-    private AreaCorporalAcometida areaCorporalAcometida;
+
+    @OneToMany(mappedBy = "tratamento_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Tratamento> tratamentos;
 
 
 

@@ -23,43 +23,45 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AreaCorporalAcometida {
 
+    // pesquisar porcentagem maxima de cada membro
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Min(0)
-    @Max(100)
+    @Max(9)
     private Integer cabecaPescoco;
 
     @Min(0)
-    @Max(100)
+    @Max(9)
     private Integer bracoDireito;
 
     @Min(0)
-    @Max(100)
+    @Max(9)
     private Integer bracoEsquerdo;
 
     @Min(0)
-    @Max(100)
+    @Max(18)
     private Integer pernaDireita;
 
     @Min(0)
-    @Max(100)
+    @Max(18)
     private Integer pernaEsquerda;
 
     @Min(0)
-    @Max(100)
+    @Max(18) 
     private Integer troncoAnterior;
 
     @Min(0)
-    @Max(100)
+    @Max(18)
     private Integer troncoPosterior;
 
     @Min(0)
-    @Max(100)
+    @Max(1)
     private Integer genitalia;
 
     @OneToOne(mappedBy = "areaCorporalAcometida")
-    private Paciente paciente;
+    private Tratamento tratamento;
 
 }
