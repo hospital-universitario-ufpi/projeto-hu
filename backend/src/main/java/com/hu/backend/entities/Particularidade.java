@@ -53,4 +53,5 @@ public class Particularidade {
     @OneToOne(mappedBy = "particularidade")
     private Tratamento tratamento;
 
+
 }
