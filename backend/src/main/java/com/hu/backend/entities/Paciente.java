@@ -1,6 +1,7 @@
 package com.hu.backend.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.hu.backend.entities.enums.Fototipo;
 import com.hu.backend.entities.enums.PacienteSexo;
@@ -15,6 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,7 +64,8 @@ public class Paciente {
     @JoinColumn(name = "area_corporal_acometida")
     private AreaCorporalAcometida areaCorporalAcometida;
 
-
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sessao> sessoes;
 
 
 
