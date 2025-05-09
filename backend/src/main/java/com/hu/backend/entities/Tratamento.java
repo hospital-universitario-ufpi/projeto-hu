@@ -3,6 +3,7 @@ package com.hu.backend.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.hu.backend.entities.enums.DiaSemana;
@@ -21,6 +22,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -83,7 +85,12 @@ public class Tratamento {
     @JoinColumn(name = "area_corporal_acometida_id")
     private AreaCorporalAcometida areaCorporalAcometida;
 
+    @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sessao> sessoes;
     
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "particularidade_id")
+    private Particularidades particularidade;
 
     
 

@@ -64,8 +64,8 @@ public class Paciente {
     @JoinColumn(name = "area_corporal_acometida")
     private AreaCorporalAcometida areaCorporalAcometida;
 
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Sessao> sessoes;
+    @OneToMany(mappedBy = "tratamento_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Tratamento> tratamentos;
 
 
 

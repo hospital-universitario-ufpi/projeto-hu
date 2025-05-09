@@ -44,6 +44,7 @@ public class Sessao {
     private Integer tempoExposicao;
 
     @ManyToOne
-    @JoinColumn(name = "paciente_id", nullable = false) 
-    private Paciente paciente;
+    @JoinColumn(name = "tratamento_id", nullable = false)
+    private Tratamento tratamento;
+
 }
