@@ -133,7 +133,7 @@ public class DtoUtils {
                 tratamento.getModalidade(),
                 tratamento.getFrequenciaTratamento(),
                 tratamento.getRespostaTratamento(),
-                tratamento.getAreaCorporalAcometida(),
+                DtoUtils.toDto(tratamento.getAreaCorporalAcometida()),
                 DtoUtils.toDtoList(tratamento.getSessoes(), DtoUtils::toDto),
                 DtoUtils.toDto(tratamento.getParticularidade())
             );
