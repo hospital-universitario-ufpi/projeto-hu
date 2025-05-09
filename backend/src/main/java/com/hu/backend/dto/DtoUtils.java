@@ -3,8 +3,11 @@ package com.hu.backend.dto;
 import java.util.List;
 import java.util.function.Function;
 
+import com.hu.backend.dto.exame.ExameCreationDto;
+import com.hu.backend.dto.exame.ExameDto;
 import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
+import com.hu.backend.entities.Exame;
 import com.hu.backend.entities.Paciente;
 
 public class DtoUtils {
@@ -39,6 +42,31 @@ public class DtoUtils {
 
     // ========================= EXAMES ==========================  marcos
 
+        public static Exame toEntity(ExameCreationDto exame) {
+            return Exame.builder()
+                .dataExame(exame.dataExame())
+                .exameTipo(exame.exameTipo())
+                .laboratorio(exame.laboratorio())
+                .nomeExame(exame.nomeExame())
+                .observacao(exame.observacao())
+                .resultadoBoolean(exame.resultadoBoolean())
+                .resultadoOutro(exame.resultadoOutro())
+                .build();
+        }
+
+        public static ExameDto toDto(Exame exame) {
+            return new ExameDto(
+                exame.getId(),
+                exame.getExameTipo(),
+                exame.getNomeExame(),
+                exame.getResultadoNumerico(),
+                exame.isResultadoBoolean(),
+                exame.getResultadoOutro(),
+                exame.getDataExame(),
+                exame.getLaboratorio(),
+                exame.getObservacao()
+            );
+        }
 
     // ========================= AreaCorporalAcometida ========================== vitao
 
