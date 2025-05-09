@@ -2,7 +2,11 @@ package com.hu.backend.entities;
 
 import java.time.LocalDate;
 
+import com.hu.backend.entities.enums.Reacaotipo;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,7 +36,8 @@ public class Sessao {
 
     private int Dose;
 
-    private String reacaoPosSessao;
+    @Enumerated(EnumType.STRING)
+    private Reacaotipo reacaoPosSessao;
 
     private String observacoes;
 
