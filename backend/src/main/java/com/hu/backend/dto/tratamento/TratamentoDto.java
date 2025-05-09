@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.hu.backend.dto.areaCorporalAcometida.AreaCorporalAcometidaDto;
 import com.hu.backend.dto.sessao.SessaoDto;
-import com.hu.backend.entities.AreaCorporalAcometida;
 import com.hu.backend.entities.Paciente;
-import com.hu.backend.entities.Particularidades;
+import com.hu.backend.entities.Particularidade;
 import com.hu.backend.entities.enums.RespostaTratamento;
 
 public record TratamentoDto(
@@ -23,8 +23,8 @@ public record TratamentoDto(
     String modalidade,
     Integer frequenciaTratamento,
     RespostaTratamento respostaTratamento,
-    AreaCorporalAcometida areaCorporalAcometida,
+    AreaCorporalAcometidaDto areaCorporalAcometida,
     List<SessaoDto> sessoes,
-    Particularidades particularidadeId
+    Particularidade particularidade // trocar para Dto
 ) {
 }

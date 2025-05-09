@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +26,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Exames {
+public class Exame {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +50,9 @@ public class Exames {
     private String laboratorio;
 
     private String observacao;
+
+    @ManyToOne
+    @JoinColumn(name = "tratamento_id", nullable = false)
+    private Tratamento tratamento;
+
 }

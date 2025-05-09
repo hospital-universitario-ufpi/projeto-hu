@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Particularidades {
+public class Particularidade {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

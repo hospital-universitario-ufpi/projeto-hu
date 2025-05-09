@@ -60,10 +60,6 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private Fototipo fototipo;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "area_corporal_acometida")
-    private AreaCorporalAcometida areaCorporalAcometida;
-
     @OneToMany(mappedBy = "tratamento_id", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Tratamento> tratamentos;
 

@@ -90,9 +90,10 @@ public class Tratamento {
     
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "particularidade_id")
-    private Particularidades particularidade;
+    private Particularidade particularidade;
 
-    
+    @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Exame> exames;
 
 }
 /*

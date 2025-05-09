@@ -8,6 +8,7 @@ public record AreaCorporalAcometidaCreationDto(
     Integer pernaEsquerda,
     Integer troncoAnterior,
     Integer troncoPosterior,
-    Integer genitalia
+    Integer genitalia,
+    Long tratamentoId
 ) {
 }
