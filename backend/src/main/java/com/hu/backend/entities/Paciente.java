@@ -57,8 +57,11 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private Fototipo fototipo;
 
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Sessao> sessoes;
+
+    @OneToMany(mappedBy = "tratamento_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Tratamento> tratamentos;
+
+
 
 
 

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,6 +49,9 @@ public class Particularidade {
 
     @Column(name = "descricao_outros")
     private String descricaoOutros;
+
+    @OneToOne(mappedBy = "particularidade")
+    private Tratamento tratamento;
 
 
 }

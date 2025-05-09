@@ -48,4 +48,9 @@ public class Exame {
     private String laboratorio;
 
     private String observacao;
+
+    @ManyToOne
+    @JoinColumn(name = "tratamento_id", nullable = false)
+    private Tratamento tratamento;
+
 }
