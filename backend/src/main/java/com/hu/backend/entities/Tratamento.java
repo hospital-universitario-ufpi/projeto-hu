@@ -2,10 +2,19 @@ package com.hu.backend.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.hu.backend.entities.enums.DiaSemana;
+import com.hu.backend.entities.enums.RespostaTratamento;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -51,8 +60,27 @@ public class Tratamento {
 
     private BigDecimal doseAcumulada;
 
+    private String local;
+
+    private boolean finalizado;
+
+    private String modalidade; 
+
+    private Integer frequenciaTratamento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "reposta_tratamento")
+    private RespostaTratamento respostaTratamento;
+
+    @ElementCollection(targetClass = DiaSemana.class)
+    @CollectionTable(name = "dias_sessao", joinColumns = @JoinColumn(name = "tratamento_id"))
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    @Column(name = "dia")
+    private Set<DiaSemana> diasSessao = new HashSet<>();
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "area_corporal_acometida")
+    @JoinColumn(name = "area_corporal_acometida_id")
     private AreaCorporalAcometida areaCorporalAcometida;
 
     
