@@ -1,0 +1,74 @@
+<div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg space-y-6 border">
+    <!-- Cabeçalho -->
+    <div class="flex justify-between items-center border-b pb-4">
+      <div class="text-left">
+        <h1 class="text-sm font-bold uppercase">Hospital Universitário</h1>
+        <p class="text-xs">Hospital Universitário</p>
+      </div>
+      <div class="text-center text-xs">
+        <h1 class="text-sm font-bold">Universidade Federal do Piauí</h1>
+      </div>
+      <div class="text-right text-xs">
+        <h1 class="text-sm font-bold">EBSERH</h1>
+        <p>Hospitais Universitários</p>
+        <p>Empresa Brasileira de Serviços Hospitalares</p>
+      </div>
+    </div>
+  
+    <!-- Título -->
+    <h2 class="text-center text-lg font-bold uppercase">Ficha Clínica - Fototerapia</h2>
+  
+    <!-- Informações básicas -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      <div>
+        <label class="font-medium">Nome:</label>
+        <input type="text" class="w-full mt-1 border rounded px-2 py-1" />
+      </div>
+      <div>
+        <label class="font-medium">Prontuário:</label>
+        <input type="text" class="w-full mt-1 border rounded px-2 py-1" />
+      </div>
+      <div class="flex items-center gap-4">
+        <label class="font-medium">Sexo:</label>
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="rounded border-gray-300" />
+          <span class="ml-1">Feminino</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="rounded border-gray-300" />
+          <span class="ml-1">Masculino</span>
+        </label>
+      </div>
+      <div class="flex gap-4">
+  
+        <div class="w-1/2">
+          <label class="font-medium">Data de nascimento:</label>
+          <input type="date" class="w-full mt-1 border rounded px-2 py-1" />
+        </div>
+      </div>
+      <div>
+        <label class="font-medium">Telefone do médico:</label>
+        <input type="tel" class="w-full mt-1 border rounded px-2 py-1" />
+      </div>
+      <div>
+        <label class="font-medium">Médico que indicou:</label>
+        <input type="text" class="w-full mt-1 border rounded px-2 py-1" />
+      </div>
+      <div>
+        <label class="font-medium">Telefone do paciente:</label>
+        <input type="tel" class="w-full mt-1 border rounded px-2 py-1" />
+      </div>
+        <div>
+      <label for="fototipo" class="block text-sm font-medium text-gray-700">Fototipo</label>
+      <select id="fototipo" name="fototipo" class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        <option value="">Selecione...</option>
+        <option value="1">Pele branca</option>
+        <option value="2">Pele morena clara</option>
+        <option value="3">Pele morena moderada</option>
+        <option value="4">Pele morena escura</option>
+        <option value="5">Pele negra</option>
+      </select>
+    </div>
+    </div>
+  </div>
+  
