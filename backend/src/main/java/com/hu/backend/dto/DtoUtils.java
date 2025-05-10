@@ -74,7 +74,7 @@ public class DtoUtils {
             exame.getExameTipo(),
             exame.getNomeExame(),
             exame.getResultadoNumerico(),
-            exame.isResultadoBoolean(),
+            exame.getResultadoBoolean(),
             exame.getResultadoOutro(),
             exame.getDataExame(),
             exame.getLaboratorio(),
