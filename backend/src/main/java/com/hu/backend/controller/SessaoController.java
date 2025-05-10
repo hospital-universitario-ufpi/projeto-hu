@@ -32,7 +32,7 @@ public class SessaoController {
         return ResponseEntity.status(HttpStatus.OK).body(sessaoService.findAll());
     }
 
-    @GetMapping(value = "/tratamento/{tratamentoId}")
+    @GetMapping(value = "/sessao/tratamentoId/tratamento")
     public ResponseEntity<List<SessaoDto>> findByTratamentoId(Long tratamentoId){
         return ResponseEntity.status(HttpStatus.OK).body(sessaoService.findByTratamentoId(tratamentoId));
     }

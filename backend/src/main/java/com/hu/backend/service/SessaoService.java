@@ -34,7 +34,7 @@ public class SessaoService {
         }
 
         public List<SessaoDto> findByTratamentoId(Long tratamentoId){
-            Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(SessaoNotFound::new);
+            Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(TratamentoNotFound::new);
 
             return DtoUtils.toDtoList(tratamento.getSessoes(), DtoUtils::toDto);
         }
