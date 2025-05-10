@@ -95,6 +95,14 @@ public class Tratamento {
     @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Exame> exames;
 
+    //====================================================
+    public void addExame(Exame exame) {
+        this.exames.add(exame);
+    }
+
+    public void addSessao(Sessao sessao){
+        this.sessoes.add(sessao);
+    }
 }
 /*
  * 
