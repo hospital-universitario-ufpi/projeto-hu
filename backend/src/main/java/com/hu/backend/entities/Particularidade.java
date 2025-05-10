@@ -38,7 +38,7 @@ public class Particularidade {
     @Column(name = "descricao_expor_face")
     private String descricaoExporFace;
 
-    @Column(name = "uso_degrau")
+    @Column(name = "protecao_genital")
     private boolean protecaoGenital;
 
     @Column(name = "descricao_protecao_genital")
