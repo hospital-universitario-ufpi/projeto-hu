@@ -17,12 +17,9 @@ import com.hu.backend.entities.Sessao;
 import com.hu.backend.entities.Tratamento;
 import com.hu.backend.dto.exame.ExameCreationDto;
 import com.hu.backend.dto.exame.ExameDto;
-import com.hu.backend.dto.paciente.PacienteCreationDto;
-import com.hu.backend.dto.paciente.PacienteDto;
 import com.hu.backend.dto.particularidade.ParticularidadeCreationDto;
 import com.hu.backend.dto.particularidade.ParticularidadeDto;
 import com.hu.backend.entities.Exame;
-import com.hu.backend.entities.Paciente;
 import com.hu.backend.entities.Particularidade;
 
 public class DtoUtils {
