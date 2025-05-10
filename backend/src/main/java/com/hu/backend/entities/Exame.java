@@ -44,7 +44,7 @@ public class Exame {
 
     private String resultadoOutro;
 
-    @Column(name = "exame_tipo")
+    @Column(name = "data_exame")
     private LocalDate dataExame;
 
     private String laboratorio;

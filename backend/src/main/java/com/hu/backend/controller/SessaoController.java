@@ -1,4 +1,4 @@
-package com.hu.backend.controller.advice;
+package com.hu.backend.controller;
 
 import java.util.List;
 
@@ -45,8 +45,8 @@ public class SessaoController {
 
     //======================= DELETE =======================
     @DeleteMapping(value = "sessao/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long sessaoId){
-        sessaoService.delete(sessaoId);
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id){
+        sessaoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

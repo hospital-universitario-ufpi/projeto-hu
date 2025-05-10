@@ -13,6 +13,7 @@ import com.hu.backend.repositories.SessaoRepository;
 import com.hu.backend.repositories.TratamentoRepository;
 import com.hu.backend.service.exception.ExameNotFound;
 import com.hu.backend.service.exception.SessaoNotFound;
+import com.hu.backend.service.exception.TratamentoNotFound;
 
 @Service
 public class SessaoService {
@@ -39,7 +40,7 @@ public class SessaoService {
         }
     //======================== POST ========================
         public SessaoDto create(SessaoCreationDto sessaoCreationDto){
-             Tratamento tratamento = tratamentoRepository.findById(sessaoCreationDto.tratamentoId()).orElseThrow(ExameNotFound::new);
+             Tratamento tratamento = tratamentoRepository.findById(sessaoCreationDto.tratamentoId()).orElseThrow(TratamentoNotFound::new);
 
             Sessao sessao = DtoUtils.toEntity(sessaoCreationDto);
 

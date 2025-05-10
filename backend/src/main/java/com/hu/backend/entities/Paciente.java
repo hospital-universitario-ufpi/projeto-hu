@@ -59,7 +59,7 @@ public class Paciente {
     private Fototipo fototipo;
 
 
-    @OneToMany(mappedBy = "tratamento_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Tratamento> tratamentos;
 
 
