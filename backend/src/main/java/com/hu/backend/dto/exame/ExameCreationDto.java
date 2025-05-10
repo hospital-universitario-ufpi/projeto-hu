@@ -10,7 +10,7 @@ public record ExameCreationDto(
     ExameTipo exameTipo,
     String nomeExame,
     BigDecimal resultadoNumerico,
-    boolean resultadoBoolean,
+    Boolean resultadoBoolean,
     String resultadoOutro,
     LocalDate dataExame,
     String laboratorio,

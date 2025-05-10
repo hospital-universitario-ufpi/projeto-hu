@@ -40,7 +40,7 @@ public class Exame {
 
     private BigDecimal resultadoNumerico;
 
-    private boolean resultadoBoolean;
+    private Boolean resultadoBoolean;
 
     private String resultadoOutro;
 
