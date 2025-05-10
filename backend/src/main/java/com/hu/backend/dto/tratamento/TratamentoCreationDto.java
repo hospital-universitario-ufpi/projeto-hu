@@ -1,6 +1,5 @@
 package com.hu.backend.dto.tratamento;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -12,13 +11,10 @@ public record TratamentoCreationDto(
     String nomeTratamento,
     LocalDate dataInicio,
     LocalDate dataFim,
-    Integer quantidadeSessoes,
-    BigDecimal doseAcumulada,
-    String local,
     boolean finalizado,
-    String modalidade,
     Integer frequenciaTratamento,
     RespostaTratamento respostaTratamento,
-    Set<DiaSemana> diasSessao
+    Set<DiaSemana> diasSessao,
+    String diagnostico
 ) {  
 }

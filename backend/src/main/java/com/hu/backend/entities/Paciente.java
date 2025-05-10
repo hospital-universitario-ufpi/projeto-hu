@@ -14,6 +14,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,6 +59,9 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private Fototipo fototipo;
 
+    @Lob
+    @Column(name = "resumo_tratamentos_anteriores", columnDefinition = "TEXT")
+    private String resumoTratamentosAnteriores;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Tratamento> tratamentos;

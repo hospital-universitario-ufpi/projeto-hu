@@ -27,21 +27,23 @@ public class DtoUtils {
     // ========================= PACIENTE ==========================  marcos
     public static Paciente toEntity(PacienteCreationDto paciente) {
         return Paciente.builder()
+            .nome(paciente.nome())
+            .prontuario(paciente.prontuario())
+            .sexo(paciente.sexo())
             .cpf(paciente.cpf())
             .dataDeNascimento(paciente.dataDeNascimento())
-            .fototipo(paciente.fototipo())
             .medicoIndicacao(paciente.medicoIndicacao())
             .telefoneMedicoIndicacao(paciente.telefoneMedicoIndicacao())
             .telefonePaciente(paciente.telefonePaciente())
-            .prontuario(paciente.prontuario())
-            .sexo(paciente.sexo())
-            .nome(paciente.nome())
+            .fototipo(paciente.fototipo())
+            .resumoTratamentosAnteriores(paciente.resumoTratamentosAnteriores())
             .build();
         }
 
     public static PacienteDto toDto(Paciente paciente) {
         return new PacienteDto(
             paciente.getId(),
+            paciente.getNome(),
             paciente.getProntuario(),
             paciente.getSexo(),
             paciente.getCpf(),
@@ -50,7 +52,7 @@ public class DtoUtils {
             paciente.getTelefoneMedicoIndicacao(),
             paciente.getTelefonePaciente(),
             paciente.getFototipo(),
-            paciente.getNome()
+            paciente.getResumoTratamentosAnteriores()
             );
         }
 
@@ -143,7 +145,7 @@ public class DtoUtils {
         public static Sessao toEntity(SessaoCreationDto sessao){
             return Sessao.builder()
                 .dataSessao(sessao.dataSessao())
-                .Dose(sessao.Dose())
+                .dose(sessao.dose())
                 .reacaoPosSessao(sessao.reacaoPosSessao())
                 .observacoes(sessao.observacoes())
                 .tempoExposicao(sessao.tempoExposicao())
@@ -157,8 +159,7 @@ public class DtoUtils {
                 sessao.getDose(),
                 sessao.getReacaoPosSessao(),
                 sessao.getObservacoes(),
-                sessao.getTempoExposicao(),
-                sessao.getId()
+                sessao.getTempoExposicao()
             );
         }
 
@@ -168,14 +169,11 @@ public class DtoUtils {
                 .nomeTratamento(tratamento.nomeTratamento())
                 .dataInicio(tratamento.dataInicio())
                 .dataFim(tratamento.dataFim())
-                .quantidadeSessoes(tratamento.quantidadeSessoes())
-                .doseAcumulada(tratamento.doseAcumulada())
-                .local(tratamento.local())
                 .finalizado(tratamento.finalizado())
-                .modalidade(tratamento.modalidade())
                 .frequenciaTratamento(tratamento.frequenciaTratamento())
                 .respostaTratamento(tratamento.respostaTratamento())
                 .diasSessao(tratamento.diasSessao())
+                .diagnostico(tratamento.diagnostico())
                 .build();
         }
 
@@ -185,12 +183,11 @@ public class DtoUtils {
                 tratamento.getNomeTratamento(),
                 tratamento.getDataInicio(),
                 tratamento.getDataFim(),
-                tratamento.getQuantidadeSessoes(),
-                tratamento.getDoseAcumulada(),
-                tratamento.getLocal(),
                 tratamento.isFinalizado(),
                 tratamento.getModalidade(),
+                tratamento.getDiagnostico(),
                 tratamento.getFrequenciaTratamento(),
+                tratamento.getDiasSessao(),
                 tratamento.getRespostaTratamento(),
                 DtoUtils.toDto(tratamento.getAreaCorporalAcometida()),
                 DtoUtils.toDtoList(tratamento.getSessoes(), DtoUtils::toDto),

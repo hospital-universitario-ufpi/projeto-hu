@@ -6,6 +6,7 @@ import com.hu.backend.entities.enums.Fototipo;
 import com.hu.backend.entities.enums.PacienteSexo;
 
 public record PacienteCreationDto(
+    String nome,
     String prontuario,
     PacienteSexo sexo,
     String cpf,
@@ -14,11 +15,7 @@ public record PacienteCreationDto(
     String telefoneMedicoIndicacao,
     String telefonePaciente,
     Fototipo fototipo,
-    String nome
+    String resumoTratamentosAnteriores
 ) {
     
 }
-
-/*
- * 
- */

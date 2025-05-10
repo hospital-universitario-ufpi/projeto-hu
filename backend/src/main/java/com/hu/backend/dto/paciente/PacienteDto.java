@@ -7,6 +7,7 @@ import com.hu.backend.entities.enums.PacienteSexo;
 
 public record PacienteDto(
     Long id,
+    String nome,
     String prontuario,
     PacienteSexo sexo,
     String cpf,
@@ -15,7 +16,7 @@ public record PacienteDto(
     String telefoneMedicoIndicacao,
     String telefonePaciente,
     Fototipo fototipo,
-    String nome
+    String resumoTratamentosAnteriores
 ) {
     
 }

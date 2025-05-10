@@ -1,6 +1,5 @@
 package com.hu.backend.entities;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -57,16 +56,14 @@ public class Tratamento {
     @Column(name = "data_fim")
     private LocalDate dataFim;
 
-    @Column(name = "quantidade_sessoes")
-    private Integer quantidadeSessoes;
-
-    private BigDecimal doseAcumulada;
-
-    private String local;
-
     private boolean finalizado;
 
-    private String modalidade; 
+    @Builder.Default
+    private String modalidade = "UVB-NB"; 
+
+    private String diagnostico;
+
+    // private String diagnosticoCodigo
 
     private Integer frequenciaTratamento;
 
