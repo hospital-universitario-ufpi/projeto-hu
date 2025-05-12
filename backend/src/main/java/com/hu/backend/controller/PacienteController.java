@@ -1,11 +1,16 @@
 package com.hu.backend.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hu.backend.dto.paciente.PacienteCreationDto;
@@ -24,7 +29,20 @@ public class PacienteController {
 
     //======================== GET =========================
 
-    @GetMapping(value = "/paciente/")
+    @GetMapping(value = "/paciente")
+    public ResponseEntity<List<PacienteDto>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findAll());
+    }
+
+    @GetMapping(value = "/paciente/{pacienteId}")
+    public ResponseEntity<PacienteDto> findById(@PathVariable Long pacienteId) {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findById(pacienteId));
+    }
+
+    @GetMapping(value = "/paciente")
+    public ResponseEntity<PacienteDto> findByProntuario(@RequestParam String prontuario) {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findByProntuario(prontuario));
+    }
     
     //======================== POST ========================
     @PostMapping(value = "/paciente")
@@ -35,6 +53,12 @@ public class PacienteController {
     //======================== PUT =========================
 
     //======================= DELETE =======================
+
+    @DeleteMapping(value = "/paciente/{pacienteId}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long pacienteId) {
+        pacienteService.deleteById(pacienteId);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 

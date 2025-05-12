@@ -73,7 +73,7 @@ public class ExameService {
     //======================== PUT =========================
 
     //======================= DELETE =======================
-    public void delete(Long exameId){
+    public void deleteById(Long exameId){
         exameRepository.findById(exameId).orElseThrow(ExameNotFound::new);
 
         exameRepository.deleteById(exameId);
