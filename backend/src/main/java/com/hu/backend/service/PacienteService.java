@@ -8,6 +8,7 @@ import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
 import com.hu.backend.repositories.PacienteRepository;
 import com.hu.backend.service.exception.NotFoundException;
+import com.hu.backend.service.exception.PacienteNotFound;
 import com.hu.backend.entities.Paciente;
 
 @Service
@@ -34,6 +35,16 @@ public class PacienteService {
         return DtoUtils.toDto(paciente);
     }
 
+    public PacienteDto findByCpf(String cpf) {
+        Paciente paciente = pacienteRepository.findByCpf(cpf).orElseThrow(PacienteNotFound::new);
+        return DtoUtils.toDto(paciente);
+    }
+
+    public PacienteDto findByProntuario(String prontuario) {
+        Paciente paciente = pacienteRepository.findByProntuario(prontuario).orElseThrow(PacienteNotFound::new);
+        return DtoUtils.toDto(paciente);
+    }
+
     //======================== POST ========================
 
     public PacienteDto create(PacienteCreationDto pacienteCreationDto) {
@@ -50,5 +61,8 @@ public class PacienteService {
 
     //======================= DELETE =======================
     
+    public void deleteById(Long id) {
+        pacienteRepository.deleteById(id);
+    }
 
 }

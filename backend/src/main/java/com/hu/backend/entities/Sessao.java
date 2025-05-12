@@ -27,7 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Sessao {
+public class Sessao{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

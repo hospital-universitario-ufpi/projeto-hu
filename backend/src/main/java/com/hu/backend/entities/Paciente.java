@@ -30,7 +30,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Paciente {
+public class Paciente{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,13 @@ public class Paciente {
 
     private String nome;
 
+    @Column(unique = true, nullable = false)
     private String prontuario; // vem da ficha do ghu;
 
     @Enumerated(EnumType.STRING)
     private PacienteSexo sexo;
 
+    @Column(unique = true, nullable = false)
     private String cpf;
 
     @Column(name = "data_de_nascimento")

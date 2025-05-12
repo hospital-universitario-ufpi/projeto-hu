@@ -1,5 +1,6 @@
 package com.hu.backend.entities;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Particularidade {
+public class Particularidade{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

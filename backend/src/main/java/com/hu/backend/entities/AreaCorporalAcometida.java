@@ -1,5 +1,6 @@
 package com.hu.backend.entities;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AreaCorporalAcometida {
+public class AreaCorporalAcometida{
 
     // pesquisar porcentagem maxima de cada membro
 

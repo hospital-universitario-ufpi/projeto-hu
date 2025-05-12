@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+Apis/ActuatorApi.md
+Apis/PacienteControllerApi.md
+Apis/SessaoControllerApi.md
+Models/Link.md
+Models/PacienteCreationDto.md
+Models/PacienteDto.md
+Models/SessaoCreationDto.md
+Models/SessaoDto.md
+README.md

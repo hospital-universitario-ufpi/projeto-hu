@@ -37,7 +37,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Tratamento {
+public class Tratamento{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
