@@ -64,6 +64,7 @@ public class ExameService {
 
         List<Exame> examesSalvos = exameRepository.saveAll(exameList);
 
+        
         tratamento.getExames().addAll(examesSalvos);
         tratamentoRepository.save(tratamento);
         
