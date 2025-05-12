@@ -35,11 +35,6 @@ public class PacienteService {
         return DtoUtils.toDto(paciente);
     }
 
-    public PacienteDto findByCpf(String cpf) {
-        Paciente paciente = pacienteRepository.findByCpf(cpf).orElseThrow(PacienteNotFound::new);
-        return DtoUtils.toDto(paciente);
-    }
-
     public PacienteDto findByProntuario(String prontuario) {
         Paciente paciente = pacienteRepository.findByProntuario(prontuario).orElseThrow(PacienteNotFound::new);
         return DtoUtils.toDto(paciente);

@@ -21,9 +21,6 @@ public record PacienteDto(
     @Schema(description = "Sexo do paciente", implementation = PacienteSexo.class)
     PacienteSexo sexo,
 
-    @Schema(description = "CPF do paciente (apenas números)", example = "12345678901")
-    String cpf,
-
     @Schema(description = "Data de nascimento do paciente", example = "1990-08-15")
     LocalDate dataDeNascimento,
 

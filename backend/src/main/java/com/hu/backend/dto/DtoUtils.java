@@ -30,7 +30,6 @@ public class DtoUtils {
             .nome(paciente.nome())
             .prontuario(paciente.prontuario())
             .sexo(paciente.sexo())
-            .cpf(paciente.cpf())
             .dataDeNascimento(paciente.dataDeNascimento())
             .medicoIndicacao(paciente.medicoIndicacao())
             .telefoneMedicoIndicacao(paciente.telefoneMedicoIndicacao())
@@ -46,7 +45,6 @@ public class DtoUtils {
             paciente.getNome(),
             paciente.getProntuario(),
             paciente.getSexo(),
-            paciente.getCpf(),
             paciente.getDataDeNascimento(),
             paciente.getMedicoIndicacao(),
             paciente.getTelefoneMedicoIndicacao(),

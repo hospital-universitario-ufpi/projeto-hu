@@ -35,11 +35,11 @@ public class PacienteController {
     }
 
     @GetMapping(value = "/paciente/{pacienteId}")
-    public ResponseEntity<PacienteDto> findById(@PathVariable Long pacienteId) {
+    public ResponseEntity<PacienteDto> findById(@PathVariable("pacienteId") Long pacienteId) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findById(pacienteId));
     }
 
-    @GetMapping(value = "/paciente")
+    @GetMapping(value = "/paciente/prontuario")
     public ResponseEntity<PacienteDto> findByProntuario(@RequestParam String prontuario) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findByProntuario(prontuario));
     }

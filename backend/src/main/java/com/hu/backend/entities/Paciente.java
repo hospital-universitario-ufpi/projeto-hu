@@ -44,9 +44,6 @@ public class Paciente{
     @Enumerated(EnumType.STRING)
     private PacienteSexo sexo;
 
-    @Column(unique = true, nullable = false)
-    private String cpf;
-
     @Column(name = "data_de_nascimento")
     private LocalDate dataDeNascimento;
 
