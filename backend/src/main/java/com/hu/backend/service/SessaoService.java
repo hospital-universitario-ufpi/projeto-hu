@@ -11,7 +11,6 @@ import com.hu.backend.entities.Sessao;
 import com.hu.backend.entities.Tratamento;
 import com.hu.backend.repositories.SessaoRepository;
 import com.hu.backend.repositories.TratamentoRepository;
-import com.hu.backend.service.exception.ExameNotFound;
 import com.hu.backend.service.exception.SessaoNotFound;
 import com.hu.backend.service.exception.TratamentoNotFound;
 

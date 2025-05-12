@@ -32,8 +32,8 @@ public class SessaoController {
         return ResponseEntity.status(HttpStatus.OK).body(sessaoService.findAll());
     }
 
-    @GetMapping(value = "/sessao/tratamentoId/tratamento")
-    public ResponseEntity<List<SessaoDto>> findByTratamentoId(Long tratamentoId){
+    @GetMapping(value = "/tratamento/{tratamentoId}/sessoes")
+    public ResponseEntity<List<SessaoDto>> findByTratamentoId(@PathVariable Long tratamentoId){
         return ResponseEntity.status(HttpStatus.OK).body(sessaoService.findByTratamentoId(tratamentoId));
     }
     //======================== POST ========================

@@ -1,5 +1,6 @@
 package com.hu.backend.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.hu.backend.entities.enums.Reacaotipo;
@@ -26,7 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Sessao {
+public class Sessao{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,14 +35,15 @@ public class Sessao {
 
     private LocalDate dataSessao;
 
-    private int Dose;
+    private BigDecimal dose;
 
     @Enumerated(EnumType.STRING)
     private Reacaotipo reacaoPosSessao;
 
+    private Integer tempoExposicao;
+
     private String observacoes;
 
-    private Integer tempoExposicao;
 
     @ManyToOne
     @JoinColumn(name = "tratamento_id", nullable = false)
