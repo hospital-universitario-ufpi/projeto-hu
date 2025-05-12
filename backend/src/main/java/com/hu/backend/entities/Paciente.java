@@ -62,7 +62,10 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Tratamento> tratamentos;
 
-
+    //======================================
+    public void addTratamento(Tratamento tratamento){
+        this.tratamentos.add(tratamento);
+    }
 
 
 
