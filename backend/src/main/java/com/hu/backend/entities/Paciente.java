@@ -50,7 +50,7 @@ public class Paciente {
 
     private String medicoIndicacao;
 
-    @Column(name = "telefone_medicacao_uso")
+    @Column(name = "telefone_medico")
     private String telefoneMedicoIndicacao;
 
     @Column(name = "telefone_paciente")
