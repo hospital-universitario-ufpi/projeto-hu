@@ -40,11 +40,11 @@ public class Exame {
 
     private BigDecimal resultadoNumerico;
 
-    private boolean resultadoBoolean;
+    private Boolean resultadoBoolean;
 
     private String resultadoOutro;
 
-    @Column(name = "exame_tipo")
+    @Column(name = "data_exame")
     private LocalDate dataExame;
 
     private String laboratorio;

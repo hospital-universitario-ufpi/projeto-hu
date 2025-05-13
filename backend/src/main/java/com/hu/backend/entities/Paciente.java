@@ -14,6 +14,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,26 +30,26 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Paciente {
+public class Paciente{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
 
+    @Column(unique = true, nullable = false)
     private String prontuario; // vem da ficha do ghu;
 
     @Enumerated(EnumType.STRING)
     private PacienteSexo sexo;
-
-    private String cpf;
 
     @Column(name = "data_de_nascimento")
     private LocalDate dataDeNascimento;
 
     private String medicoIndicacao;
 
-    @Column(name = "telefone_medicacao_uso")
+    @Column(name = "telefone_medico")
     private String telefoneMedicoIndicacao;
 
     @Column(name = "telefone_paciente")
@@ -57,11 +58,17 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private Fototipo fototipo;
 
+    @Lob
+    @Column(name = "resumo_tratamentos_anteriores", columnDefinition = "TEXT")
+    private String resumoTratamentosAnteriores;
 
-    @OneToMany(mappedBy = "tratamento_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Tratamento> tratamentos;
 
-
+    //======================================
+    public void addTratamento(Tratamento tratamento){
+        this.tratamentos.add(tratamento);
+    }
 
 
 

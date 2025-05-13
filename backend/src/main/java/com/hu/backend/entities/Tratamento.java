@@ -1,6 +1,5 @@
 package com.hu.backend.entities;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -38,7 +37,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Tratamento {
+public class Tratamento{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,16 +56,14 @@ public class Tratamento {
     @Column(name = "data_fim")
     private LocalDate dataFim;
 
-    @Column(name = "quantidade_sessoes")
-    private Integer quantidadeSessoes;
-
-    private BigDecimal doseAcumulada;
-
-    private String local;
-
     private boolean finalizado;
 
-    private String modalidade; 
+    @Builder.Default
+    private String modalidade = "UVB-NB"; 
+
+    private String diagnostico;
+
+    // private String diagnosticoCodigo
 
     private Integer frequenciaTratamento;
 
@@ -95,6 +92,14 @@ public class Tratamento {
     @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Exame> exames;
 
+    //====================================================
+    public void addExame(Exame exame) {
+        this.exames.add(exame);
+    }
+
+    public void addSessao(Sessao sessao){
+        this.sessoes.add(sessao);
+    }
 }
 /*
  * 

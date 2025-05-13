@@ -1,5 +1,6 @@
 package com.hu.backend.entities;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Particularidade {
+public class Particularidade{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +39,7 @@ public class Particularidade {
     @Column(name = "descricao_expor_face")
     private String descricaoExporFace;
 
-    @Column(name = "uso_degrau")
+    @Column(name = "protecao_genital")
     private boolean protecaoGenital;
 
     @Column(name = "descricao_protecao_genital")
