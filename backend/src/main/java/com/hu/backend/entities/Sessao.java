@@ -53,6 +53,6 @@ public class Sessao{
     private Tratamento tratamento;
 
     @OneToMany(mappedBy = "sessao", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Arquivos> arquivos;
+    private List<Arquivo> arquivos;
 
 }
