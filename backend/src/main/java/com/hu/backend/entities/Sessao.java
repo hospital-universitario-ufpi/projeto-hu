@@ -55,4 +55,8 @@ public class Sessao{
     @OneToMany(mappedBy = "sessao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Arquivo> arquivos;
 
+    public void addArquivo(Arquivo arquivo) {
+        this.arquivos.add(arquivo);
+    }
+
 }
