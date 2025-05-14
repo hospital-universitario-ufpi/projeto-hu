@@ -2,9 +2,11 @@ package com.hu.backend.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.hu.backend.entities.enums.Reacaotipo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,5 +51,8 @@ public class Sessao{
     @ManyToOne
     @JoinColumn(name = "tratamento_id", nullable = false)
     private Tratamento tratamento;
+
+    @OneToMany(mappedBy = "sessao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Arquivos> arquivos;
 
 }
