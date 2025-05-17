@@ -34,6 +34,6 @@ public record PacienteCreationDto(
     Fototipo fototipo,
 
     @Schema(description = "Resumo opcional de tratamentos anteriores realizados", example = "Paciente já realizou sessões de fototerapia em 2022.")
-    String resumoTratamentosAnteriores
+    String resumoTratamentosAnteriores // textarea
 
 ) {}

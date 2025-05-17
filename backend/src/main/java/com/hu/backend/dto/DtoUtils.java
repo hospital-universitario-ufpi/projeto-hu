@@ -5,6 +5,8 @@ import java.util.function.Function;
 
 import com.hu.backend.dto.areaCorporalAcometida.AreaCorporalAcometidaCreationDto;
 import com.hu.backend.dto.areaCorporalAcometida.AreaCorporalAcometidaDto;
+import com.hu.backend.dto.arquivos.ArquivoCreationDto;
+import com.hu.backend.dto.arquivos.ArquivoDto;
 import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
 import com.hu.backend.dto.sessao.SessaoCreationDto;
@@ -12,6 +14,7 @@ import com.hu.backend.dto.sessao.SessaoDto;
 import com.hu.backend.dto.tratamento.TratamentoCreationDto;
 import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.entities.AreaCorporalAcometida;
+import com.hu.backend.entities.Arquivo;
 import com.hu.backend.entities.Paciente;
 import com.hu.backend.entities.Sessao;
 import com.hu.backend.entities.Tratamento;
@@ -193,7 +196,21 @@ public class DtoUtils {
             );
         }
 
-    //==============================================================
+    // ========================= Arquivo ==========================
+
+    public static Arquivo toEntity(ArquivoCreationDto arquivo) {
+        return Arquivo.builder()
+            .url(arquivo.url())
+            .titulo(arquivo.titulo()).build();
+    }
+
+    public static ArquivoDto toDto(Arquivo arquivo) {
+        return new ArquivoDto(
+            arquivo.getId(),
+            arquivo.getUrl(),
+            arquivo.getTitulo()
+        );
+    }
 
     public static <T, R> List<R> toDtoList(List<T> modelList, Function<T, R> mapper) {
         return modelList.stream().map(mapper).toList();
