@@ -191,8 +191,9 @@ public class DtoUtils {
                 tratamento.getDiasSessao(),
                 tratamento.getRespostaTratamento(),
                 DtoUtils.toDto(tratamento.getAreaCorporalAcometida()),
-                DtoUtils.toDtoList(tratamento.getSessoes(), DtoUtils::toDto),
-                DtoUtils.toDto(tratamento.getParticularidade())
+                DtoUtils.toDto(tratamento.getParticularidade()),
+                DtoUtils.toDtoList(tratamento.getExames(), DtoUtils::toDto),
+                DtoUtils.toDtoList(tratamento.getSessoes(), DtoUtils::toDto)
             );
         }
 
