@@ -27,9 +27,6 @@ public class TratamentoService {
     
     private TratamentoRepository tratamentoRepository;
     private PacienteRepository pacienteRepository;
-    private ParticularidadeRepository particularidadeRepository;
-    private ExameRepository exameRepository;
-    private AreaCorporalRepository areaCorporalRepository;
 
     public TratamentoService(
         TratamentoRepository tratamentoRepository,

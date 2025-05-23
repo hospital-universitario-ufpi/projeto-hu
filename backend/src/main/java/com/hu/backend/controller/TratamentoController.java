@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hu.backend.dto.areaCorporalAcometida.AreaCorporalAcometidaCreationDto;
-import com.hu.backend.dto.particularidade.ParticularidadeCreationDto;
-import com.hu.backend.dto.particularidade.ParticularidadeDto;
-import com.hu.backend.dto.tratamento.TratamentoCreationDto;
+
 import com.hu.backend.dto.tratamento.TratamentoCreationRequest;
 import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.service.TratamentoService;
