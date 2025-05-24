@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.hu.backend.dto.DtoUtils;
 import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
+import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.repositories.PacienteRepository;
 import com.hu.backend.service.exception.NotFoundException;
 import com.hu.backend.service.exception.PacienteNotFound;
@@ -38,6 +39,12 @@ public class PacienteService {
     public PacienteDto findByProntuario(String prontuario) {
         Paciente paciente = pacienteRepository.findByProntuario(prontuario).orElseThrow(PacienteNotFound::new);
         return DtoUtils.toDto(paciente);
+    }
+
+    public List<TratamentoDto> findTratamentosByPacienteId(Long pacienteId) {
+        Paciente paciente = pacienteRepository.findById(pacienteId).orElseThrow(PacienteNotFound::new);
+
+        return DtoUtils.toDtoList(paciente.getTratamentos(), DtoUtils::toDto);
     }
 
     //======================== POST ========================

@@ -1,6 +1,7 @@
 package com.hu.backend.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.hu.backend.entities.enums.Fototipo;
@@ -62,12 +63,14 @@ public class Paciente{
     @Column(name = "resumo_tratamentos_anteriores", columnDefinition = "TEXT")
     private String resumoTratamentosAnteriores;
 
+    @Builder.Default
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Tratamento> tratamentos;
+    List<Tratamento> tratamentos = new ArrayList<>();
 
     //======================================
     public void addTratamento(Tratamento tratamento){
         this.tratamentos.add(tratamento);
+        tratamento.setPaciente(this);
     }
 
 
