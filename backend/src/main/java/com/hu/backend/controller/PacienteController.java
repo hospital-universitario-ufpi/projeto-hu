@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
+import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.service.PacienteService;
 
 @RestController
@@ -42,6 +43,11 @@ public class PacienteController {
     @GetMapping(value = "/paciente/prontuario")
     public ResponseEntity<PacienteDto> findByProntuario(@RequestParam String prontuario) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findByProntuario(prontuario));
+    }
+
+    @GetMapping(value = "/paciente/{pacienteId}/tratamentos")
+    public ResponseEntity<List<TratamentoDto>> findTratamentosByPacienteId(@PathVariable("pacienteId") Long pacienteId) {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findTratamentosByPacienteId(pacienteId));
     }
     
     //======================== POST ========================

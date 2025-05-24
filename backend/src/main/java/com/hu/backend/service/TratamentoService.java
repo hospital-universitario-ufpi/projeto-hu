@@ -3,6 +3,7 @@ package com.hu.backend.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hu.backend.dto.DtoUtils;
 import com.hu.backend.dto.areaCorporalAcometida.AreaCorporalAcometidaCreationDto;
@@ -24,59 +25,72 @@ import com.hu.backend.service.exception.PacienteNotFound;
 
 @Service
 public class TratamentoService {
-    
+
     private TratamentoRepository tratamentoRepository;
     private PacienteRepository pacienteRepository;
+    private ParticularidadeRepository particularidadeRepository;
+    private ExameRepository exameRepository;
+    private AreaCorporalRepository areaCorporalRepository;
 
     public TratamentoService(
-        TratamentoRepository tratamentoRepository,
-        PacienteRepository pacienteRepository,
-        ParticularidadeRepository particularidadeRepository,
-        ExameRepository exameRepository,
-        AreaCorporalRepository areaCorporalRepository
-        ){
+            TratamentoRepository tratamentoRepository,
+            PacienteRepository pacienteRepository,
+            ParticularidadeRepository particularidadeRepository,
+            ExameRepository exameRepository,
+            AreaCorporalRepository areaCorporalRepository) {
         this.tratamentoRepository = tratamentoRepository;
         this.pacienteRepository = pacienteRepository;
+        this.particularidadeRepository = particularidadeRepository;
+        this.areaCorporalRepository = areaCorporalRepository;
+        this.exameRepository = exameRepository;
     }
 
-    //======================== GET =========================
+    // ======================== GET =========================
 
-    //======================== POST ========================
-        public TratamentoDto create(
+    // ======================== POST ========================
+    @Transactional
+    public TratamentoDto create(
             TratamentoCreationDto tratamentoCreationDto,
             ParticularidadeCreationDto particularidadeCreationDto,
             List<ExameCreationDto> exameListCreationDto,
-            AreaCorporalAcometidaCreationDto areaCorporalAcometidaCreationDto
-            ) {
-            Paciente paciente = pacienteRepository.findById(tratamentoCreationDto.pacienteId()).orElseThrow(PacienteNotFound::new);
+            AreaCorporalAcometidaCreationDto areaCorporalAcometidaCreationDto) {
 
-            Tratamento tratamento = DtoUtils.toEntity(tratamentoCreationDto);
-            tratamento.setPaciente(paciente);
 
-            Particularidade particularidade = DtoUtils.toEntity(particularidadeCreationDto);
-            particularidade.setTratamento(tratamento);
-            tratamento.setParticularidade(particularidade);
+        Paciente paciente = pacienteRepository.findById(tratamentoCreationDto.pacienteId())
+                .orElseThrow(PacienteNotFound::new);
 
-            AreaCorporalAcometida areaCorporal = DtoUtils.toEntity(areaCorporalAcometidaCreationDto);
-            areaCorporal.setTratamento(tratamento);
-            tratamento.setAreaCorporalAcometida(areaCorporal);
+        Tratamento tratamento = tratamentoRepository.save(DtoUtils.toEntity(tratamentoCreationDto));
 
-            List<Exame> exames = exameListCreationDto.stream()
+        tratamento.setPaciente(paciente);
+        paciente.addTratamento(tratamento);
+
+        pacienteRepository.save(paciente);
+
+        Particularidade particularidade = DtoUtils.toEntity(particularidadeCreationDto);
+        particularidade.setTratamento(tratamento);
+        tratamento.setParticularidade(particularidade);
+        particularidadeRepository.save(particularidade);
+
+        AreaCorporalAcometida areaCorporal = DtoUtils.toEntity(areaCorporalAcometidaCreationDto);
+        areaCorporal.setTratamento(tratamento);
+        tratamento.setAreaCorporalAcometida(areaCorporal);
+        areaCorporalRepository.save(areaCorporal);
+
+        List<Exame> exames = exameListCreationDto.stream()
                 .map(dto -> {
                     Exame exame = DtoUtils.toEntity(dto);
                     exame.setTratamento(tratamento);
                     return exame;
                 }).toList();
-            
-            tratamento.setExames(exames);
 
-            paciente.addTratamento(tratamento);
+        tratamento.setExames(exames);
+        exameRepository.saveAll(exames);
 
-            pacienteRepository.save(paciente);
+        Tratamento tratamentoSaved = tratamentoRepository.save(tratamento);
 
-            return DtoUtils.toDto(tratamento);
-        }
-    //======================== PUT =========================
+        return DtoUtils.toDto(tratamentoSaved);
+    }
+    // ======================== PUT =========================
 
-    //======================= DELETE =======================
+    // ======================= DELETE =======================
 }
