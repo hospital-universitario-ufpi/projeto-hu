@@ -28,19 +28,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+
+                // Permitir todas as requisições durante a apresentação
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                            new AntPathRequestMatcher("/auth/login"),
-                            new AntPathRequestMatcher("/auth/register"),
-                            new AntPathRequestMatcher("/swagger-ui.html"),
-                            new AntPathRequestMatcher("/swagger-ui/**"),
-                            new AntPathRequestMatcher("/v3/api-docs/**")
-                        ).permitAll()
-                        .anyRequest().authenticated()
-                )
+                        .anyRequest().permitAll())
+
+                // Desabilita controle de sessão
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+
+                // Comentado: desabilita autenticação via provider e filtro JWT temporariamente
+                // .authenticationProvider(authenticationProvider())
+                // .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+
                 .build();
     }
 
@@ -63,5 +62,4 @@ public class SecurityConfig {
         return provider;
     }
 
-    
 }
