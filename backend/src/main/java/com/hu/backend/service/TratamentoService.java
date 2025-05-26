@@ -1,6 +1,7 @@
 package com.hu.backend.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,7 +82,7 @@ public class TratamentoService {
                     Exame exame = DtoUtils.toEntity(dto);
                     exame.setTratamento(tratamento);
                     return exame;
-                }).toList();
+                }).collect(Collectors.toList());
 
         tratamento.setExames(exames);
         exameRepository.saveAll(exames);

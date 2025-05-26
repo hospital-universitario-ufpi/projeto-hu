@@ -100,10 +100,3 @@ public class Tratamento{
         this.sessoes.add(sessao);
     }
 }
-/*
- * 
- * {
- *      id: 654654654654654,
- *      nome
- * }
- */
