@@ -1,6 +1,7 @@
 package com.hu.backend.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,17 +27,13 @@ import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Tratamento{
     
     @Id
@@ -82,15 +79,17 @@ public class Tratamento{
     @JoinColumn(name = "area_corporal_acometida_id")
     private AreaCorporalAcometida areaCorporalAcometida;
 
+    @Builder.Default
     @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Sessao> sessoes;
+    private List<Sessao> sessoes = new ArrayList<>();
     
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "particularidade_id")
     private Particularidade particularidade;
 
+    @Builder.Default
     @OneToMany(mappedBy = "tratamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Exame> exames;
+    private List<Exame> exames = new ArrayList<>();
 
     //====================================================
     public void addExame(Exame exame) {
@@ -101,10 +100,3 @@ public class Tratamento{
         this.sessoes.add(sessao);
     }
 }
-/*
- * 
- * {
- *      id: 654654654654654,
- *      nome
- * }
- */

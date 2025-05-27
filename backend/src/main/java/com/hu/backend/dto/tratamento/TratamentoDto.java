@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.hu.backend.dto.areaCorporalAcometida.AreaCorporalAcometidaDto;
+import com.hu.backend.dto.exame.ExameDto;
 import com.hu.backend.dto.particularidade.ParticularidadeDto;
 import com.hu.backend.dto.sessao.SessaoDto;
 import com.hu.backend.entities.enums.DiaSemana;
@@ -47,10 +48,14 @@ public record TratamentoDto(
     @Schema(description = "Informações sobre a área corporal acometida")
     AreaCorporalAcometidaDto areaCorporalAcometida,
 
-    @Schema(description = "Lista de sessões realizadas durante o tratamento")
-    List<SessaoDto> sessoes,
-
     @Schema(description = "Particularidades específicas do paciente durante o tratamento")
-    ParticularidadeDto particularidade
+    ParticularidadeDto particularidade,
+
+    @Schema(description = "Exames do paciente feitos antes do tratamento")
+    List<ExameDto> exames,
+
+    @Schema(description = "Lista de sessões realizadas durante o tratamento")
+    List<SessaoDto> sessoes
+
 
 ) {}
