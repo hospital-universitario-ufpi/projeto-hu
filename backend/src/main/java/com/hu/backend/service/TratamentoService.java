@@ -23,6 +23,7 @@ import com.hu.backend.repositories.PacienteRepository;
 import com.hu.backend.repositories.ParticularidadeRepository;
 import com.hu.backend.repositories.TratamentoRepository;
 import com.hu.backend.service.exception.PacienteNotFound;
+import com.hu.backend.service.exception.TratamentoNotFound;
 
 @Service
 public class TratamentoService {
@@ -47,6 +48,11 @@ public class TratamentoService {
     }
 
     // ======================== GET =========================
+
+    public TratamentoDto findById(Long tratamentoId) {
+        Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(TratamentoNotFound::new);
+        return DtoUtils.toDto(tratamento);
+    }
 
     // ======================== POST ========================
     @Transactional
