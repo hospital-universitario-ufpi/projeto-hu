@@ -24,7 +24,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AreaCorporalAcometida{
 
-    // pesquisar porcentagem maxima de cada membro
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

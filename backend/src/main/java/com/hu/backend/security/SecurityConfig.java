@@ -29,16 +29,10 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
 
-                // Permitir todas as requisições durante a apresentação
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll())
 
-                // Desabilita controle de sessão
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-                // Comentado: desabilita autenticação via provider e filtro JWT temporariamente
-                // .authenticationProvider(authenticationProvider())
-                // .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }
