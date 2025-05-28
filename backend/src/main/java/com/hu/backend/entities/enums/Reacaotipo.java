@@ -3,7 +3,7 @@ package com.hu.backend.entities.enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Reacaotipo {
-    ARDENCIA("Ardencia"),
+    ARDENCIA("Ardência"),
     ERITEMA_LEVE("Eritema Leve"),
     ERITEMA_SEVERO("Eritema Severo"),
     BOLHAS("Bolhas");
