@@ -11,18 +11,21 @@ import com.hu.backend.repositories.PacienteRepository;
 import com.hu.backend.service.exception.NotFoundException;
 import com.hu.backend.service.exception.PacienteNotFound;
 import com.hu.backend.entities.Paciente;
+import com.hu.backend.mapper.PacienteMapper;
 
 @Service
 public class PacienteService {
-    
+
+    private PacienteMapper pacienteMapper;
+
     private PacienteRepository pacienteRepository;
 
-    public PacienteService(PacienteRepository pacienteRepository) {
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper) {
         this.pacienteRepository = pacienteRepository;
+        this.pacienteMapper = pacienteMapper;
     }
 
-
-    //======================== GET =========================
+    // ======================== GET =========================
 
     public List<PacienteDto> findAll() {
         List<Paciente> pacienteList = pacienteRepository.findAll();
@@ -31,7 +34,8 @@ public class PacienteService {
     }
 
     public PacienteDto findById(Long id) {
-        Paciente paciente = pacienteRepository.findById(id).orElseThrow(() -> new NotFoundException("Paciente não encontrado"));
+        Paciente paciente = pacienteRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Paciente não encontrado"));
 
         return DtoUtils.toDto(paciente);
     }
@@ -47,7 +51,7 @@ public class PacienteService {
         return DtoUtils.toDtoList(paciente.getTratamentos(), DtoUtils::toDto);
     }
 
-    //======================== POST ========================
+    // ======================== POST ========================
 
     public PacienteDto create(PacienteCreationDto pacienteCreationDto) {
         Paciente paciente = DtoUtils.toEntity(pacienteCreationDto);
@@ -56,13 +60,34 @@ public class PacienteService {
         return DtoUtils.toDto(pacienteSaved);
     }
 
+    // ======================== PUT =========================
+    public PacienteDto updatePaciente(Long id, PacienteDto pacienteDto) {
+        Paciente paciente = pacienteRepository.findById(id)
+                .orElseThrow(PacienteNotFound::new);
 
-    //======================== PUT =========================
+        pacienteMapper.updateEntityFromDto(pacienteDto, paciente);
 
+        Paciente pacienteAtualizado = pacienteRepository.save(paciente);
 
+        return pacienteMapper.toDto(pacienteAtualizado);
+    }
 
-    //======================= DELETE =======================
-    
+    // PUT ANTERIOR
+    /*
+     * public PacienteDto updatePaciente(Long id, PacienteDto pacienteDto) {
+     * Paciente paciente =
+     * pacienteRepository.findById(id).orElseThrow(PacienteNotFound::new);
+     * 
+     * DtoUtils.updatePacienteFromDto(paciente, pacienteDto);
+     * 
+     * Paciente pacienteAtualizado = pacienteRepository.save(paciente);
+     * 
+     * return DtoUtils.toDto(pacienteAtualizado);
+     * }
+     */
+
+    // ======================= DELETE =======================
+
     public void deleteById(Long id) {
         pacienteRepository.deleteById(id);
     }
