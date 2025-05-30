@@ -11,17 +11,4 @@
             "envFile": "${workspaceFolder}/.env"
         }
     ]
-}{
-  "configurations": [
-    {
-      "type": "java",
-      "name": "Spring Boot-HuBackendApplication<backend>",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "mainClass": "com.hu.backend.HuBackendApplication",
-      "projectName": "backend",
-      "args": "",
-      "envFile": "${workspaceFolder}/.env"
-    }
-  ]
 }
