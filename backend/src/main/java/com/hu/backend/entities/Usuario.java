@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuario")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,6 +20,8 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     @Email
     private String email;
+
+    private String nome;
 
     @Column(nullable = false)
     private String password;
