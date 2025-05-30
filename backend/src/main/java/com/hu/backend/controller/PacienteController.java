@@ -17,6 +17,9 @@ import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
 import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.service.PacienteService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
@@ -54,14 +57,14 @@ public class PacienteController {
 
     // ======================== POST ========================
     @PostMapping(value = "/paciente")
-    public ResponseEntity<PacienteDto> create(@RequestBody PacienteCreationDto paciente) {
+    public ResponseEntity<PacienteDto> create(@RequestBody @Valid PacienteCreationDto paciente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pacienteService.create(paciente));
     }
 
     // ======================== PUT =========================
 
     @PutMapping(value = "/paciente/{id}")
-    public ResponseEntity<PacienteDto> updatePaciente(@PathVariable("id") Long id, @RequestBody PacienteDto pacienteDto) {
+    public ResponseEntity<PacienteDto> updatePaciente(@PathVariable("id") Long id, @RequestBody @Valid PacienteDto pacienteDto) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.updatePaciente(id, pacienteDto));
     }
 
