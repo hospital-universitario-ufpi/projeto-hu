@@ -17,18 +17,19 @@ import com.hu.backend.dto.paciente.PacienteCreationDto;
 import com.hu.backend.dto.paciente.PacienteDto;
 import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.service.PacienteService;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping
 public class PacienteController {
-    
+
     private final PacienteService pacienteService;
 
     public PacienteController(PacienteService pacienteService) {
         this.pacienteService = pacienteService;
     }
 
-    //======================== GET =========================
+    // ======================== GET =========================
 
     @GetMapping(value = "/paciente")
     public ResponseEntity<List<PacienteDto>> findAll() {
@@ -46,19 +47,25 @@ public class PacienteController {
     }
 
     @GetMapping(value = "/paciente/{pacienteId}/tratamentos")
-    public ResponseEntity<List<TratamentoDto>> findTratamentosByPacienteId(@PathVariable("pacienteId") Long pacienteId) {
+    public ResponseEntity<List<TratamentoDto>> findTratamentosByPacienteId(
+            @PathVariable("pacienteId") Long pacienteId) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.findTratamentosByPacienteId(pacienteId));
     }
-    
-    //======================== POST ========================
+
+    // ======================== POST ========================
     @PostMapping(value = "/paciente")
     public ResponseEntity<PacienteDto> create(@RequestBody PacienteCreationDto paciente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pacienteService.create(paciente));
     }
 
-    //======================== PUT =========================
+    // ======================== PUT =========================
 
-    //======================= DELETE =======================
+    @PutMapping(value = "/paciente/{id}")
+    public ResponseEntity<PacienteDto> updatePaciente(@PathVariable("id") Long id, @RequestBody PacienteDto pacienteDto) {
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteService.updatePaciente(id, pacienteDto));
+    }
+
+    // ======================= DELETE =======================
 
     @DeleteMapping(value = "/paciente/{pacienteId}")
     public ResponseEntity<Void> deleteById(@PathVariable Long pacienteId) {
@@ -67,11 +74,10 @@ public class PacienteController {
     }
 }
 
+// ======================== GET =========================
 
-    //======================== GET =========================
+// ======================== POST ========================
 
-    //======================== POST ========================
+// ======================== PUT =========================
 
-    //======================== PUT =========================
-
-    //======================= DELETE =======================
+// ======================= DELETE =======================
