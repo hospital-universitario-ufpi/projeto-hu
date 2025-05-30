@@ -27,7 +27,7 @@ public class SessaoController {
     }
     
     //======================== GET =========================
-    @GetMapping(value = "sessao")
+    @GetMapping(value = "/sessao")
     public ResponseEntity<List<SessaoDto>> findAll(){
         return ResponseEntity.status(HttpStatus.OK).body(sessaoService.findAll());
     }
@@ -37,16 +37,16 @@ public class SessaoController {
         return ResponseEntity.status(HttpStatus.OK).body(sessaoService.findByTratamentoId(tratamentoId));
     }
     //======================== POST ========================
-    @PostMapping(value = "sessao")
+    @PostMapping(value = "/sessao")
     public ResponseEntity<SessaoDto> create(@RequestBody SessaoCreationDto dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(sessaoService.create(dto));
     }
     //======================== PUT =========================
 
     //======================= DELETE =======================
-    @DeleteMapping(value = "sessao/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id){
-        sessaoService.delete(id);
+    @DeleteMapping(value = "/sessao/{sessaoId}")
+    public ResponseEntity<Void> deleteById(@PathVariable("sessaoId") Long sessaoId){
+        sessaoService.delete(sessaoId);
         return ResponseEntity.noContent().build();
     }
 }

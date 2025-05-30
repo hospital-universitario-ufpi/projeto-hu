@@ -59,6 +59,18 @@ public class DtoUtils {
                 paciente.getResumoTratamentosAnteriores());
     }
 
+    public static void updatePacienteFromDto(Paciente paciente, PacienteDto dto) {
+        paciente.setNome(dto.nome());
+        paciente.setProntuario(dto.prontuario());
+        paciente.setSexo(dto.sexo());
+        paciente.setDataDeNascimento(dto.dataDeNascimento());
+        paciente.setMedicoIndicacao(dto.medicoIndicacao());
+        paciente.setTelefoneMedicoIndicacao(dto.telefoneMedicoIndicacao());
+        paciente.setTelefonePaciente(dto.telefonePaciente());
+        paciente.setFototipo(dto.fototipo());
+        paciente.setResumoTratamentosAnteriores(dto.resumoTratamentosAnteriores());
+    }
+
     // ========================= EXAMES ========================== marcos
 
     public static Exame toEntity(ExameCreationDto exame) {

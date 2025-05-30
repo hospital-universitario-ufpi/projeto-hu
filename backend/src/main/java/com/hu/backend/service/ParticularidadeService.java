@@ -1,7 +1,5 @@
 package com.hu.backend.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.hu.backend.dto.DtoUtils;

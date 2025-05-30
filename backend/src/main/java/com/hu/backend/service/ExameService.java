@@ -12,6 +12,7 @@ import com.hu.backend.entities.Tratamento;
 import com.hu.backend.repositories.ExameRepository;
 import com.hu.backend.repositories.TratamentoRepository;
 import com.hu.backend.service.exception.ExameNotFound;
+import com.hu.backend.service.exception.TratamentoNotFound;
 
 @Service
 public class ExameService {
@@ -37,6 +38,12 @@ public class ExameService {
         return DtoUtils.toDtoList(tratamento.getExames(), DtoUtils::toDto);
     }
 
+    public ExameDto findById(Long id){
+        Exame exame = exameRepository.findById(id).orElseThrow(ExameNotFound::new);
+
+        return DtoUtils.toDto(exame);
+    }
+
     //======================== POST ========================
     public ExameDto create(ExameCreationDto exameCreationDto){
         Tratamento tratamento = tratamentoRepository.findById(exameCreationDto.tratamentoId()).orElseThrow(ExameNotFound::new);
@@ -52,7 +59,7 @@ public class ExameService {
     }
 
     public List<ExameDto> createMultiple(List<ExameCreationDto> exameCreationDtoList, Long tratamentoId) {
-        Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(ExameNotFound::new);
+        Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(TratamentoNotFound::new);
 
         List<Exame> exameList = exameCreationDtoList.stream()
         .map(exameCreationDto -> {
@@ -64,6 +71,7 @@ public class ExameService {
 
         List<Exame> examesSalvos = exameRepository.saveAll(exameList);
 
+        
         tratamento.getExames().addAll(examesSalvos);
         tratamentoRepository.save(tratamento);
         
