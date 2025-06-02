@@ -72,20 +72,6 @@ public class PacienteService {
         return pacienteMapper.toDto(pacienteAtualizado);
     }
 
-    // PUT ANTERIOR
-    /*
-     * public PacienteDto updatePaciente(Long id, PacienteDto pacienteDto) {
-     * Paciente paciente =
-     * pacienteRepository.findById(id).orElseThrow(PacienteNotFound::new);
-     * 
-     * DtoUtils.updatePacienteFromDto(paciente, pacienteDto);
-     * 
-     * Paciente pacienteAtualizado = pacienteRepository.save(paciente);
-     * 
-     * return DtoUtils.toDto(pacienteAtualizado);
-     * }
-     */
-
     // ======================= DELETE =======================
 
     public void deleteById(Long id) {
