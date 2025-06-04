@@ -26,7 +26,7 @@ public record PacienteCreationDto(
     PacienteSexo sexo,
 
     @NotNull(message = "A data de nascimento é obrigatória.")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Past(message = "A data de nascimento deve ser uma data passada.")
     @Schema(description = "Data de nascimento do paciente", example = "20-05-1990")
     LocalDate dataDeNascimento,
