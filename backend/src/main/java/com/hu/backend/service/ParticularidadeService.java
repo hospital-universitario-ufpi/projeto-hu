@@ -7,25 +7,29 @@ import com.hu.backend.dto.particularidade.ParticularidadeCreationDto;
 import com.hu.backend.dto.particularidade.ParticularidadeDto;
 import com.hu.backend.entities.Particularidade;
 import com.hu.backend.entities.Tratamento;
+import com.hu.backend.mapper.ParticularidadeMapper;
 import com.hu.backend.repositories.ParticularidadeRepository;
 import com.hu.backend.repositories.TratamentoRepository;
+import com.hu.backend.service.exception.ParticularidadeNotFound;
 import com.hu.backend.service.exception.TratamentoNotFound;
 
 @Service
 public class ParticularidadeService {
 
+    private ParticularidadeMapper particularidadeMapper;
     private final ParticularidadeRepository particularidadeRepository;
     private final TratamentoRepository tratamentoRepository;
 
     public ParticularidadeService(
-        ParticularidadeRepository particularidadeRepository,
-        TratamentoRepository tratamentoRepository
-        ) {
+            ParticularidadeRepository particularidadeRepository,
+            TratamentoRepository tratamentoRepository,
+            ParticularidadeMapper particularidadeMapper) {
         this.particularidadeRepository = particularidadeRepository;
         this.tratamentoRepository = tratamentoRepository;
+        this.particularidadeMapper = particularidadeMapper;
     }
 
-    //======================== GET =========================
+    // ======================== GET =========================
 
     public ParticularidadeDto findByTratamentoId(Long tratamentoId) {
         Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(TratamentoNotFound::new);
@@ -34,11 +38,12 @@ public class ParticularidadeService {
         return DtoUtils.toDto(particularidade);
     }
 
-    //======================== POST ========================
+    // ======================== POST ========================
 
     public ParticularidadeDto create(ParticularidadeCreationDto particularidadeCreationDto) {
 
-        Tratamento tratamento = tratamentoRepository.findById(particularidadeCreationDto.tratamentoId()).orElseThrow(TratamentoNotFound::new);
+        Tratamento tratamento = tratamentoRepository.findById(particularidadeCreationDto.tratamentoId())
+                .orElseThrow(TratamentoNotFound::new);
         Particularidade particularidade = DtoUtils.toEntity(particularidadeCreationDto);
         particularidade.setTratamento(tratamento);
         Particularidade particularidadeSaved = particularidadeRepository.save(particularidade);
@@ -47,16 +52,26 @@ public class ParticularidadeService {
         return DtoUtils.toDto(particularidadeSaved);
     }
 
-    //======================== PUT =========================
+    // ======================== PUT =========================
+    public ParticularidadeDto updateParticularidade(Long id, ParticularidadeCreationDto particularidadeCreationDto) {
+        Particularidade particularidade = particularidadeRepository.findById(id)
+                .orElseThrow(ParticularidadeNotFound::new);
 
+        ParticularidadeDto particularidadeDto = DtoUtils.toDto(DtoUtils.toEntity(particularidadeCreationDto));
 
+        particularidadeMapper.updateEntityFromDto(particularidadeDto, particularidade);
 
-    //======================= DELETE =======================
+        Particularidade particularidadeAtualizada = particularidadeRepository.save(particularidade);
+
+        return particularidadeMapper.toDto(particularidadeAtualizada);
+    }
+
+    // ======================= DELETE =======================
 
     public void deleteById(Long tratamentoId) {
         Tratamento tratamento = tratamentoRepository.findById(tratamentoId).orElseThrow(TratamentoNotFound::new);
         tratamento.setParticularidade(null);
         tratamentoRepository.save(tratamento);
-        
-    } 
+
+    }
 }

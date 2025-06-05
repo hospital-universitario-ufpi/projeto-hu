@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.hu.backend.dto.tratamento.TratamentoCreationDto;
 import com.hu.backend.dto.tratamento.TratamentoCreationRequest;
 import com.hu.backend.dto.tratamento.TratamentoDto;
 import com.hu.backend.service.TratamentoService;
+
+import org.springframework.web.bind.annotation.PutMapping;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping
@@ -48,6 +52,10 @@ public class TratamentoController {
     }
 
     //======================== PUT =========================
+    @PutMapping(value = "/tratamento/{id}")
+    public ResponseEntity<TratamentoDto> updateTratamento(@PathVariable("id") Long id, @RequestBody @Valid TratamentoCreationDto tratamentoCreationDto){
+        return ResponseEntity.status(HttpStatus.OK).body(tratamentoService.updateTratamento(id, tratamentoCreationDto));
+    }
 
     //======================= DELETE =======================
 

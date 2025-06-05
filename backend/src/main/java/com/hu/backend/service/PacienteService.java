@@ -61,9 +61,11 @@ public class PacienteService {
     }
 
     // ======================== PUT =========================
-    public PacienteDto updatePaciente(Long id, PacienteDto pacienteDto) {
+    public PacienteDto updatePaciente(Long id, PacienteCreationDto pacienteCreationDto) {
         Paciente paciente = pacienteRepository.findById(id)
                 .orElseThrow(PacienteNotFound::new);
+
+        PacienteDto pacienteDto = DtoUtils.toDto(DtoUtils.toEntity(pacienteCreationDto));
 
         pacienteMapper.updateEntityFromDto(pacienteDto, paciente);
 
@@ -71,20 +73,6 @@ public class PacienteService {
 
         return pacienteMapper.toDto(pacienteAtualizado);
     }
-
-    // PUT ANTERIOR
-    /*
-     * public PacienteDto updatePaciente(Long id, PacienteDto pacienteDto) {
-     * Paciente paciente =
-     * pacienteRepository.findById(id).orElseThrow(PacienteNotFound::new);
-     * 
-     * DtoUtils.updatePacienteFromDto(paciente, pacienteDto);
-     * 
-     * Paciente pacienteAtualizado = pacienteRepository.save(paciente);
-     * 
-     * return DtoUtils.toDto(pacienteAtualizado);
-     * }
-     */
 
     // ======================= DELETE =======================
 

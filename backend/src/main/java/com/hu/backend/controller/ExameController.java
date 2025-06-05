@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hu.backend.dto.exame.ExameCreationDto;
 import com.hu.backend.dto.exame.ExameDto;
 import com.hu.backend.service.ExameService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -51,6 +55,10 @@ public class ExameController {
         }
         
     //======================== PUT =========================
+        @PutMapping(value = "/exame/{id}")
+        public ResponseEntity<ExameDto> updateExame(@PathVariable("id") Long id, @RequestBody @Valid ExameCreationDto exameDto){
+            return ResponseEntity.status(HttpStatus.OK).body(exameService.updateExame(id, exameDto));
+        }
 
     //======================= DELETE =======================
         @DeleteMapping(value = "/exame/{exameId}")

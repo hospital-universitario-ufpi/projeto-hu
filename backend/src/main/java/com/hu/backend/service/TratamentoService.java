@@ -17,6 +17,7 @@ import com.hu.backend.entities.Exame;
 import com.hu.backend.entities.Paciente;
 import com.hu.backend.entities.Particularidade;
 import com.hu.backend.entities.Tratamento;
+import com.hu.backend.mapper.TratamentoMapper;
 import com.hu.backend.repositories.AreaCorporalRepository;
 import com.hu.backend.repositories.ExameRepository;
 import com.hu.backend.repositories.PacienteRepository;
@@ -28,6 +29,7 @@ import com.hu.backend.service.exception.TratamentoNotFound;
 @Service
 public class TratamentoService {
 
+    private TratamentoMapper tratamentoMapper;
     private TratamentoRepository tratamentoRepository;
     private PacienteRepository pacienteRepository;
     private ParticularidadeRepository particularidadeRepository;
@@ -39,12 +41,14 @@ public class TratamentoService {
             PacienteRepository pacienteRepository,
             ParticularidadeRepository particularidadeRepository,
             ExameRepository exameRepository,
-            AreaCorporalRepository areaCorporalRepository) {
+            AreaCorporalRepository areaCorporalRepository,
+            TratamentoMapper tratamentoMapper) {
         this.tratamentoRepository = tratamentoRepository;
         this.pacienteRepository = pacienteRepository;
         this.particularidadeRepository = particularidadeRepository;
         this.areaCorporalRepository = areaCorporalRepository;
         this.exameRepository = exameRepository;
+        this.tratamentoMapper = tratamentoMapper;
     }
 
     // ======================== GET =========================
@@ -61,7 +65,6 @@ public class TratamentoService {
             ParticularidadeCreationDto particularidadeCreationDto,
             List<ExameCreationDto> exameListCreationDto,
             AreaCorporalAcometidaCreationDto areaCorporalAcometidaCreationDto) {
-
 
         Paciente paciente = pacienteRepository.findById(tratamentoCreationDto.pacienteId())
                 .orElseThrow(PacienteNotFound::new);
@@ -98,6 +101,16 @@ public class TratamentoService {
         return DtoUtils.toDto(tratamentoSaved);
     }
     // ======================== PUT =========================
+    public TratamentoDto updateTratamento(Long id, TratamentoCreationDto tratamentoCreationDto){
+        Tratamento tratamento = tratamentoRepository.findById(id).orElseThrow(TratamentoNotFound::new);
 
+        TratamentoDto tratamentoDto = DtoUtils.toDto(DtoUtils.toEntity(tratamentoCreationDto));
+
+        tratamentoMapper.updateEntityFromDto(tratamentoDto, tratamento);
+
+        Tratamento tratamentoAtualizado = tratamentoRepository.save(tratamento);
+
+        return tratamentoMapper.toDto(tratamentoAtualizado);
+    }
     // ======================= DELETE =======================
 }

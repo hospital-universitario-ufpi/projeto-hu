@@ -58,6 +58,11 @@ dependencies {
     annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.5.Final")
 }
 
+tasks.withType<JavaCompile> {
+    options.annotationProcessorPath = configurations.annotationProcessor.get()
+}
+
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
