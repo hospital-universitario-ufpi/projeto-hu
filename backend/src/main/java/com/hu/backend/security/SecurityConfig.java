@@ -37,7 +37,7 @@ public class SecurityConfig {
                             new AntPathRequestMatcher("/swagger-ui/**"),
                             new AntPathRequestMatcher("/v3/api-docs/**")
                         ).permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

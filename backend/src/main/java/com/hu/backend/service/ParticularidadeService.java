@@ -53,9 +53,11 @@ public class ParticularidadeService {
     }
 
     // ======================== PUT =========================
-    public ParticularidadeDto updateParticularidade(Long id, ParticularidadeDto particularidadeDto) {
+    public ParticularidadeDto updateParticularidade(Long id, ParticularidadeCreationDto particularidadeCreationDto) {
         Particularidade particularidade = particularidadeRepository.findById(id)
                 .orElseThrow(ParticularidadeNotFound::new);
+
+        ParticularidadeDto particularidadeDto = DtoUtils.toDto(DtoUtils.toEntity(particularidadeCreationDto));
 
         particularidadeMapper.updateEntityFromDto(particularidadeDto, particularidade);
 

@@ -18,11 +18,11 @@ import com.hu.backend.service.exception.TratamentoNotFound;
 @Service
 public class ExameService {
 
-    private ExameMapper exameMapper;
-    private ExameRepository exameRepository;
-    private TratamentoRepository tratamentoRepository;
+    private final ExameMapper exameMapper;
+    private final ExameRepository exameRepository;
+    private final TratamentoRepository tratamentoRepository;
 
-    private ExameService(ExameRepository exameRepository, TratamentoRepository tratamentoRepository, ExameMapper exameMapper) {
+    public ExameService(ExameRepository exameRepository, TratamentoRepository tratamentoRepository, ExameMapper exameMapper) {
         this.exameRepository = exameRepository;
         this.tratamentoRepository = tratamentoRepository;
         this.exameMapper = exameMapper;
@@ -82,9 +82,11 @@ public class ExameService {
     }
 
     // ======================== PUT =========================
-    public ExameDto updateExame(Long id, ExameDto exameDto) {
+    public ExameDto updateExame(Long id, ExameCreationDto exameCreationDto) {
         Exame exame = exameRepository.findById(id)
         .orElseThrow(ExameNotFound::new);
+
+        ExameDto exameDto = DtoUtils.toDto(DtoUtils.toEntity(exameCreationDto));
 
         exameMapper.updateEntityFromDto(exameDto, exame);
 

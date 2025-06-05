@@ -61,9 +61,11 @@ public class PacienteService {
     }
 
     // ======================== PUT =========================
-    public PacienteDto updatePaciente(Long id, PacienteDto pacienteDto) {
+    public PacienteDto updatePaciente(Long id, PacienteCreationDto pacienteCreationDto) {
         Paciente paciente = pacienteRepository.findById(id)
                 .orElseThrow(PacienteNotFound::new);
+
+        PacienteDto pacienteDto = DtoUtils.toDto(DtoUtils.toEntity(pacienteCreationDto));
 
         pacienteMapper.updateEntityFromDto(pacienteDto, paciente);
 

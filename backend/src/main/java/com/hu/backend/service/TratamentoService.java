@@ -101,8 +101,10 @@ public class TratamentoService {
         return DtoUtils.toDto(tratamentoSaved);
     }
     // ======================== PUT =========================
-    public TratamentoDto updateTratamento(Long id, TratamentoDto tratamentoDto){
+    public TratamentoDto updateTratamento(Long id, TratamentoCreationDto tratamentoCreationDto){
         Tratamento tratamento = tratamentoRepository.findById(id).orElseThrow(TratamentoNotFound::new);
+
+        TratamentoDto tratamentoDto = DtoUtils.toDto(DtoUtils.toEntity(tratamentoCreationDto));
 
         tratamentoMapper.updateEntityFromDto(tratamentoDto, tratamento);
 

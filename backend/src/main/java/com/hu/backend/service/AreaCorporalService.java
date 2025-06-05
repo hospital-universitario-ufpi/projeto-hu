@@ -53,13 +53,12 @@ public class AreaCorporalService {
     }
 
     // ======================== PUT =========================
-
-    //ACHO QUE TA ERRADO TESTAR AINDA
-    public AreaCorporalAcometidaDto updateAreaCorporal(AreaCorporalAcometidaDto areaCorporalAcometidaDto) {
-        Tratamento tratamento = tratamentoRepository.findById(areaCorporalAcometidaDto.id())
-                .orElseThrow(TratamentoNotFound::new);
-
+    public AreaCorporalAcometidaDto updateAreaCorporal(Long id, AreaCorporalAcometidaCreationDto areaCorporalAcometidaCreationDto) {
+        Tratamento tratamento = tratamentoRepository.findById(areaCorporalAcometidaCreationDto.tratamentoId())
+            .orElseThrow(TratamentoNotFound::new);
         AreaCorporalAcometida areaCorporal = tratamento.getAreaCorporalAcometida();
+
+        AreaCorporalAcometidaDto areaCorporalAcometidaDto = DtoUtils.toDto(DtoUtils.toEntity(areaCorporalAcometidaCreationDto));
 
         areaCorporalAcometidaMapper.updateEntityFromDto(areaCorporalAcometidaDto, areaCorporal);
 

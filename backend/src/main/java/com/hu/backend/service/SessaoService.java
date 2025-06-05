@@ -55,8 +55,10 @@ public class SessaoService {
         }
 
     //======================== PUT =========================
-    public SessaoDto updateSessao(Long id, SessaoDto sessaoDto){
+    public SessaoDto updateSessao(Long id, SessaoCreationDto sessaoCreationDto){
         Sessao sessao = sessaoRepository.findById(id).orElseThrow(SessaoNotFound::new);
+
+        SessaoDto sessaoDto = DtoUtils.toDto(DtoUtils.toEntity(sessaoCreationDto));
 
         sessaoMapper.updateEntityFromDto(sessaoDto, sessao);
 
