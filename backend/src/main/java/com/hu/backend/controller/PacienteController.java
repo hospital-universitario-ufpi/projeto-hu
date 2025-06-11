@@ -64,7 +64,7 @@ public class PacienteController {
     // ======================== PUT =========================
 
     @PutMapping(value = "/paciente/{id}")
-    public ResponseEntity<PacienteDto> updatePaciente(@PathVariable("id") Long id, @RequestBody @Valid PacienteDto pacienteDto) {
+    public ResponseEntity<PacienteDto> updatePaciente(@PathVariable("id") Long id, @RequestBody @Valid PacienteCreationDto pacienteDto) {
         return ResponseEntity.status(HttpStatus.OK).body(pacienteService.updatePaciente(id, pacienteDto));
     }
 
